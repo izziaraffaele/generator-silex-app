@@ -1,0 +1,43 @@
+{
+  "name": "silex-app-generator",
+  "version": "0.1.0",
+  "description": "A Yeoman Generator for a Silex based web app. It includes React, browserify, SASS support, Bootstrap and gulp",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/izziaraffaele/silex-app-generator.git"
+  },
+  "files": [
+    "app"
+  ],
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "keywords": [
+    "silex",
+    "yeoman",
+    "react",
+    "bootstrap",
+    "browserify",
+    "gulp"
+  ],
+  "author": "Izzia Raffaele",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/izziaraffaele/silex-app-generator/issues"
+  },
+  "homepage": "https://github.com/izziaraffaele/silex-app-generator",
+  "dependencies": {
+    "yeoman-generator": "~0.16.0",
+    "chalk": "~0.4.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0"
+  }
+}
