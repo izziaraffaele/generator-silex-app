@@ -1,0 +1,7 @@
+node_modules/
+web/assets/
+.sass-cache/
+vendor/
+.editorconfig
+.jshintrc
+.phpintel

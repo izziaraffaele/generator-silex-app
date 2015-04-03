@@ -1,0 +1,33 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        {% block head %}
+            <title>Title</title>
+            <meta name="description" content="">
+            <link rel="stylesheet" href="styles/main.css">
+        {% endblock %}
+        <script src="scripts/vendor/modernizr.js"></script>
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="content">{% block content %}{% endblock %}</div>
+        <div id="footer">
+            {% block footer %}
+                &copy; Copyright 2011 by <a href="http://domain.invalid/">you</a>.
+            {% endblock %}
+        </div>
+        
+        {% block scripts %}
+            <script src="scripts/vendor.js"></script>
+            <script src="scripts/app.js"></script>
+        {% endblock %}
+    </body>
+</html>
