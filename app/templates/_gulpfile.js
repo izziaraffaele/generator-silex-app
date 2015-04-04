@@ -34,7 +34,7 @@ gulp.task('sass', function () {
 });
 
 // Scripts
-gulp.task('scripts', function () {
+gulp.task('scripts',['vendorScripts'], function () {
     var bundler = watchify(browserify({
         entries: [sourceFile],
         insertGlobals: true,
@@ -54,7 +54,31 @@ gulp.task('scripts', function () {
     }
 
     return rebundle();
+});
 
+gulp.task('vendorScripts', function () {
+    var bundler = watchify(browserify({
+        entries: [
+            './assets/bower_components/jquery/dist/jquery.js',
+            './assets/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
+        ],
+        insertGlobals: true,
+        cache: {},
+        packageCache: {},
+        fullPaths: true
+    }));
+
+    bundler.on('update', rebundle);
+
+    function rebundle() {
+        return bundler.bundle()
+            // log errors if they happen
+            .on('error', $.util.log.bind($.util, 'Browserify Error'))
+            .pipe(source('vendor.js'))
+            .pipe(gulp.dest('./web/assets/scripts'));
+    }
+
+    return rebundle();
 });
 
 gulp.task('buildScripts', function() {

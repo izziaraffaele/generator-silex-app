@@ -3,9 +3,9 @@
 use Symfony\Component\HttpFoundation\Response;
 
 $app->error(function (\Exception $e,$code) use ($app) {
-    // if ($app['debug']) {
-    //     return;
-    // }
+    if ($app['debug'] && $code !== '404') {
+        return;
+    }
 
     // 404.html, or 40x.html, or 4xx.html, or error.html
     $templates = array(
