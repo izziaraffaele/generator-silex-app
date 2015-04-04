@@ -74,7 +74,6 @@ var Generator = yeoman.generators.Base.extend({
 
     app: function () {
         // main htaccess
-        this.copy('htaccess','.htaccess');
         this.template('_package.json', 'package.json');
         this.template('_gulpfile.js', 'gulpfile.js');
         this.template('_bower.json', 'bower.json');

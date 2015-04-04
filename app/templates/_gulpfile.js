@@ -141,7 +141,7 @@ gulp.task('watch', ['build'], function () {
         // Note: this uses an unsigned certificate which on first access
         //       will present a certificate warning in the browser.
         // https: true,
-        proxy: "<%= _.slugify(projectName) %>.dev"
+        proxy: "<%= _.slugify(projectName) %>.dev/web"
     });
 
     gulp.watch(appPath.rootIn+'/'+appPath.scriptDir+'/**/*(*.js|*.jsx)', ['scripts', reload]);
