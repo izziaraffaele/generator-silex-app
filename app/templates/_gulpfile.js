@@ -3,18 +3,16 @@
 var gulp = require('gulp');
 var del = require('del');
 
-
+<% if (includeJest) { %>
 var path = require('path');
-
+<% } %>
 
 // Load plugins
 var $ = require('gulp-load-plugins')();
 var browserify = require('browserify');
 var watchify = require('watchify');
 var source = require('vinyl-source-stream'),
-    
     sourceFile = './assets/scripts/app.js',
-    
     destFolder = './web/assets/scripts',
     destFileName = 'app.js';
 
@@ -22,12 +20,14 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 // Styles
-gulp.task('styles', function () {
+gulp.task('styles', ['sass']);
+
+gulp.task('sass', function () {
     return gulp.src(['assets/styles/**/*.scss', 'assets/styles/**/*.css'])
         .pipe($.rubySass({
             style: 'expanded',
             precision: 10,
-            loadPath: ['assets/bower_components']}))
+            loadPath: ['app/bower_components']}))
         .pipe($.autoprefixer('last 1 version'))
         .pipe(gulp.dest('web/assets/styles'))
         .pipe($.size());
@@ -64,17 +64,6 @@ gulp.task('buildScripts', function() {
             .pipe(gulp.dest('web/assets/scripts'));
 });
 
-
-
-
-// HTML
-gulp.task('html', function () {
-    return gulp.src('assets/*.html')
-        .pipe($.useref())
-        .pipe(gulp.dest('web/assets'))
-        .pipe($.size());
-});
-
 // Images
 gulp.task('images', function () {
     return gulp.src('assets/images/**/*')
@@ -94,21 +83,9 @@ gulp.task('clean', function (cb) {
 });
 
 // Bundle
-gulp.task('bundle', ['styles', 'scripts', 'bower'], function(){
-    return gulp.src('./assets/*.html')
-               .pipe($.useref.assets())
-               .pipe($.useref.restore())
-               .pipe($.useref())
-               .pipe(gulp.dest('web/assets'));
-});
+gulp.task('bundle', ['styles', 'scripts', 'bower']);
 
-gulp.task('buildBundle', ['styles', 'buildScripts', 'bower'], function(){
-    return gulp.src('./assets/*.html')
-               .pipe($.useref.assets())
-               .pipe($.useref.restore())
-               .pipe($.useref())
-               .pipe(gulp.dest('web/assets'));
-});
+gulp.task('buildBundle', ['styles', 'buildScripts', 'bower']);
 
 // Bower helper
 gulp.task('bower', function() {
@@ -130,7 +107,7 @@ gulp.task('extras', function () {
 });
 
 // Watch
-gulp.task('watch', ['html', 'bundle'], function () {
+gulp.task('watch', ['bundle'], function () {
 
     browserSync({
         notify: false,
@@ -149,18 +126,16 @@ gulp.task('watch', ['html', 'bundle'], function () {
     gulp.watch('assets/scripts/**/*.json', ['json']);
 
     // Watch .html files
-    gulp.watch('assets/*.html', ['html']);
+    gulp.watch('src/AppBundle/Views/**/*.html.twig', reload);
 
     gulp.watch(['assets/styles/**/*.scss', 'assets/styles/**/*.css'], ['styles', reload]);
-
-
 
     // Watch image files
     gulp.watch('assets/images/**/*', reload);
 });
 
 // Build
-gulp.task('build', ['html', 'buildBundle', 'images', 'extras'], function() {
+gulp.task('build', ['buildBundle', 'images', 'extras'], function() {
     gulp.src('web/assets/scripts/app.js')
         .pipe($.uglify())
         .pipe($.stripDebug())
@@ -168,4 +143,4 @@ gulp.task('build', ['html', 'buildBundle', 'images', 'extras'], function() {
 });
 
 // Default task
-gulp.task('default', ['clean', 'build', 'jest' ]);
+gulp.task('default', ['clean', 'build', <% if (includeJest) { %>, 'jest' <% } %> ]);

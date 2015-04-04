@@ -1,5 +1,5 @@
 {
-    "name": "raffa/silex-app",
+    "name": "<%= _.slugify(projectName) %>",
     "require": {
         "php": ">=5.3",
         "silex/silex": "~1.2",
@@ -11,12 +11,6 @@
     "require-dev": {
         "phpunit/phpunit": "~4.5"
     },
-    "authors": [
-        {
-            "name": "Raffaele",
-            "email": "izziaraffaele@gmail.com"
-        }
-    ],
     "autoload": {
         "psr-0": {
             "": "src/"
