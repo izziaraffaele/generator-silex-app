@@ -10,7 +10,7 @@ describe('generator-silex-app', function () {
         return done(err);
       }
 
-      this.app = helpers.createGenerator('react-gulp-browserify:app', [
+      this.app = helpers.createGenerator('silex-app:app', [
         '../../app'
       ]);
       done();

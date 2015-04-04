@@ -24,7 +24,10 @@
     "browserify",
     "gulp"
   ],
-  "author": "Izzia Raffaele",
+  "author": {
+    "name":"Izzia Raffaele",
+    "email":"izziaraffaele@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/izziaraffaele/silex-app-generator/issues"
