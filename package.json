@@ -1,5 +1,5 @@
 {
-  "name": "silex-app-generator",
+  "name": "generator-silex-app",
   "version": "0.1.0",
   "description": "A Yeoman Generator for a Silex based web app. It includes React, browserify, SASS support, Bootstrap and gulp",
   "main": "app/index.js",
@@ -18,7 +18,7 @@
   },
   "keywords": [
     "silex",
-    "yeoman",
+    "yeoman-generator",
     "react",
     "bootstrap",
     "browserify",

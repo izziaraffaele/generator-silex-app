@@ -3,7 +3,7 @@
 var path = require('path');
 var helpers = require('yeoman-generator').test;
 
-describe('react-gulp-browserify generator', function () {
+describe('generator-silex-app', function () {
   beforeEach(function (done) {
     helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
       if (err) {
@@ -19,14 +19,12 @@ describe('react-gulp-browserify generator', function () {
 
   it('creates expected files', function (done) {
     var expected = [
-        '.jshintrc',
-        '.editorconfig',
         'bower.json',
         'package.json',
         'gulpfile.js',
-        'app/index.html',
-        'app/scripts/ui/Timer.coffee',
-        'app/scripts/app.coffee'
+        'composer.json',
+        'assets/scripts/ui/LoginForm.jsx',
+        'assets/styles/_main.scss',
     ];
 
 
@@ -35,8 +33,6 @@ describe('react-gulp-browserify generator', function () {
             'includeSass',
             'includeBootstrap',
             'includeModernizr',
-            'includeJade',
-            'includeCoffeeScript'
         ]
     });
     this.app.options['skip-install'] = true;

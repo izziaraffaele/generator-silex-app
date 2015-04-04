@@ -12,12 +12,10 @@ var Generator = yeoman.generators.Base.extend({
         this.on('end', function () {
             if (!this.options['skip-install']) {
                 this.installDependencies();
+                this.spawnCommand('composer', ['install']);
             }
         });
     },
-    install: function () {
-        this.spawnCommand('composer', ['install']);
-    }
     askFor: function () {
         var done = this.async();
 
@@ -100,18 +98,18 @@ var Generator = yeoman.generators.Base.extend({
         // Now lets build assets
         this.mkdir('assets');
         this.directory('assets/images','assets/images');
-        this.directory('assets/images','assets/scripts');
-        this.mkdir('styles');
-        this.template('assets/styles/_main.scss', 'assets/styles/_main.scss');
-        this.copy('assets/styles/auth.scss','assets/styles/auth.scss');
-        this.copy('assets/styles/errors.scss','assets/styles/errors.scss');
-        this.copy('assets/favicon.ico','assets/favicon.ico');
-        this.copy('assets/robot.txt','assets/robot.txt');
-
+        this.directory('assets/scripts','assets/scripts');
 
         if (this.includeJest) {
             this.directory('assets/scripts/ui/__tests__','assets/scripts/ui/__tests__');
         }
+
+        this.mkdir('assets/styles');
+        this.template('assets/styles/_main.scss', 'assets/styles/_main.scss');
+        this.copy('assets/styles/auth.scss','assets/styles/auth.scss');
+        this.copy('assets/styles/errors.scss','assets/styles/errors.scss');
+        this.copy('assets/favicon.ico','assets/favicon.ico');
+        this.copy('assets/robots.txt','assets/robots.txt');
     }
 });
 

@@ -2,7 +2,7 @@
 'use strict';
 var assert = require('assert');
 
-describe('react-gulp-browserify generator', function () {
+describe('silex-app-generator generator', function () {
   it('can be imported without blowing up', function () {
     var app = require('../app');
     assert(app !== undefined);
