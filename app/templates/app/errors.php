@@ -3,7 +3,7 @@
 use Symfony\Component\HttpFoundation\Response;
 
 $app->error(function (\Exception $e,$code) use ($app) {
-    if ($app['debug'] && $code !== '404') {
+    if ($app['debug'] && $code !== 404) {
         return;
     }
 
