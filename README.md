@@ -35,15 +35,15 @@ If you find your css build results are empty, update your sass gem.
 
 Remember to give read/write permission to `app/cache` and `app/logs` folders
 
-Now, when everything is ready, make your first build using gulp command
-```
-$ gulp build
-```
-
-and run the watch task and begin to develop your React components.
-
+Now, when everything is ready, run the `watch` task and begin to develop your application.
 ```
 $ gulp watch
+```
+
+The `build` task helps you preparing your file for the live deploy, minifying and uglifyng both CSS and JS
+
+```
+$ gulp build
 ```
 
 How to run test?  
