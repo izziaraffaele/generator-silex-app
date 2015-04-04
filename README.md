@@ -40,10 +40,10 @@ Now, when everything is ready, run the `watch` task and begin to develop your ap
 $ gulp watch
 ```
 
-The `build` task helps you preparing your file for the live deploy, minifying and uglifyng both CSS and JS
+The `dist` task helps you preparing your file for the live deploy, minifying and uglifyng both CSS and JS
 
 ```
-$ gulp build
+$ gulp dist
 ```
 
 How to run test?  
