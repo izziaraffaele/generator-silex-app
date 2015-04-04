@@ -33,8 +33,6 @@ $ yo silex-app                                     # ...and run it.
 If you chose to use sass, you'll need to install it with `gem install sass`.
 If you find your css build results are empty, update your sass gem.
 
-Remember to give read/write permission to `app/cache` and `app/logs` folders
-
 Now, when everything is ready, run the `watch` task and begin to develop your application.
 ```
 $ gulp watch
