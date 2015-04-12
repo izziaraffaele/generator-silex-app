@@ -1,10 +1,10 @@
 <?php
 
-use AppBundle\Controllers\AuthController;
+use WebComposer\AppBundle\Controllers\AuthController;
 
 // Register Controllers and their dependencies
 $app['auth.controller'] = $app->share(function() use ($app) {
-    return new AuthController($app['twig']);
+    return new AuthController($app);
 });
 
 // Register routes

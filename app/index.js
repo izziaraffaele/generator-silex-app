@@ -81,6 +81,7 @@ var Generator = yeoman.generators.Base.extend({
         this.copy('bowerrc', '.bowerrc');
         this.copy('gitignore', '.gitignore');
         this.copy('preprocessor.js', 'preprocessor.js');
+        this.copy('phpunit.xml.dist', 'phpunit.xml.dist');
 
 
         // webroot
@@ -95,6 +96,7 @@ var Generator = yeoman.generators.Base.extend({
 
         // src application directory
         this.directory('src','src');
+        this.directory('tests','tests');
 
         // Now lets build assets
         this.mkdir('assets');

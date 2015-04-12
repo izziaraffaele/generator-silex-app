@@ -9,11 +9,21 @@ $app->error(function (\Exception $e,$code) use ($app) {
 
     // 404.html, or 40x.html, or 4xx.html, or error.html
     $templates = array(
-        'errors/'.$code.'.html.twig',
-        'errors/'.substr($code, 0, 2).'x.html.twig',
-        'errors/'.substr($code, 0, 1).'xx.html.twig',
-        'errors/default.html.twig',
+        $code.'.html.twig',
+        substr($code, 0, 2).'x.html.twig',
+        substr($code, 0, 1).'xx.html.twig',
+        'default.html.twig',
     );
 
-    return new Response($app['twig']->resolveTemplate($templates)->render(array('code' => $code)), $code);
+    $app['twig.loader']->addLoader(new \Twig_Loader_Filesystem(__DIR__.'/errors'));
+
+    foreach ($templates as $template) 
+    {
+        if( file_exists(__DIR__.'/errors/'.$template ) )
+        {
+            return $app['twig']->render($template, array('code' => $code));
+        }
+    }
+
+    return $app['twig']->render('default.html.twig', array('code' => $code));
 });

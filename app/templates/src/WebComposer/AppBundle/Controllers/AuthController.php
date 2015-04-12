@@ -1,7 +1,7 @@
 <?php
-namespace AppBundle\Controllers;
+namespace WebComposer\AppBundle\Controllers;
 
-use AppBundle\Controller;
+use WebComposer\AppBundle\Controller;
 
 class AuthController extends Controller
 {
