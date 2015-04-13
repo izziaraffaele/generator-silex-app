@@ -36,16 +36,8 @@ var Generator = yeoman.generators.Base.extend({
             name: 'features',
             message: 'What more would you like?',
             choices: [{
-                name: 'Sass with Compass',
-                value: 'includeSass',
-                checked: true
-            }, {
-                name: 'Bootstrap',
-                value: 'includeBootstrap',
-                checked: true
-            }, {
-                name: 'Modernizr',
-                value: 'includeModernizr',
+                name: 'Auth system',
+                value: 'includeAuth',
                 checked: true
             }, {
                 name: 'Jest for unit tests',
@@ -63,10 +55,8 @@ var Generator = yeoman.generators.Base.extend({
 
             // manually deal with the response, get back and store the results.
             // we change a bit this way of doing to automatically do this in the self.prompt() method.
-            this.includeSass = hasFeature('includeSass');
-            this.includeBootstrap = hasFeature('includeBootstrap');
-            this.includeModernizr = hasFeature('includeModernizr');
             this.includeJest = hasFeature('includeJest');
+            this.includeAuth = hasFeature('includeAuth');
 
             done();
         }.bind(this));
@@ -103,16 +93,37 @@ var Generator = yeoman.generators.Base.extend({
         this.directory('assets/images','assets/images');
         this.directory('assets/scripts','assets/scripts');
 
-        if (this.includeJest) {
-            this.directory('assets/scripts/ui/__tests__','assets/scripts/ui/__tests__');
-        }
-
         this.mkdir('assets/styles');
         this.template('assets/styles/_main.scss', 'assets/styles/_main.scss');
         this.copy('assets/styles/auth.scss','assets/styles/auth.scss');
         this.copy('assets/styles/errors.scss','assets/styles/errors.scss');
         this.copy('assets/favicon.ico','assets/favicon.ico');
         this.copy('assets/robots.txt','assets/robots.txt');
+
+        var routes = [];
+        // lets start adding features
+        
+        if( this.includeAuth ){
+            routes.push({
+                routeName: "login",
+                pattern: "/login",
+                method: ["get"],
+                controller: "WebComposer\\AppBundle\\Controllers\\AuthController:login"
+            });
+
+            routes.push({
+                routeName: "signup",
+                pattern: "/signup",
+                method: ["get"],
+                controller: "WebComposer\\AppBundle\\Controllers\\AuthController:signup"
+            });
+        }        
+
+        if (this.includeJest) {
+            this.directory('assets/scripts/ui/__tests__','assets/scripts/ui/__tests__');
+        }
+
+        this.write('app/config/routes.json', JSON.stringify({'config.routes':routes}));
     }
 });
 

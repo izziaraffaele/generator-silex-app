@@ -12,8 +12,7 @@ class AuthControllerTest extends WebTestCase{
         $crawler = $client->request('GET', '/login');
 
         $this->assertTrue($client->getResponse()->isOk());
-        $this->assertCount(1, $crawler->filter('input[name="email"]'));
-        $this->assertCount(1, $crawler->filter('input[name="password"]'));
+        $this->assertCount(1, $crawler->filter('div#login'));
     }
 
     public function testSignup()
@@ -22,9 +21,14 @@ class AuthControllerTest extends WebTestCase{
         $crawler = $client->request('GET', '/signup');
 
         $this->assertTrue($client->getResponse()->isOk());
-        $this->assertCount(1, $crawler->filter('input[name="first_name"]'));
-        $this->assertCount(1, $crawler->filter('input[name="last_name"]'));
-        $this->assertCount(1, $crawler->filter('input[name="email"]'));
-        $this->assertCount(1, $crawler->filter('input[name="password"]'));
+        $this->assertCount(1, $crawler->filter('div#signup'));
+    }
+
+    public function testNotFound()
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/notfoundroute');
+
+        $this->assertTrue($client->getResponse()->isNotFound());
     }
 }
